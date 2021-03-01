@@ -6,10 +6,6 @@ const pagesInput = document.getElementById('pagesInput');
 const checkboxInput = document.getElementById('readCheckbox');
 const bookList = document.getElementById('bookList');
 
-formToggler.addEventListener('click', function () {
-  form.toggleAttribute('hidden');
-});
-
 let myBooks = [];
 
 function Book(title = '', author = '', pages = '', read = false) {
@@ -30,6 +26,12 @@ function addBookToLibrary(event) {
   );
   myBooks.push({ book });
 
+  updateBooks();
+  form.reset();
+}
+
+function updateBooks() {
+  bookList.innerHTML = '';
   myBooks.forEach(({ book }) => addBook(book));
 }
 
@@ -47,6 +49,10 @@ function addBook(book) {
   bookCard.append(bookPages);
   bookList.append(bookCard);
 }
+
+formToggler.addEventListener('click', function () {
+  form.toggleAttribute('hidden');
+});
 
 form.addEventListener('submit', function (event) {
   addBookToLibrary(event);
