@@ -58,7 +58,6 @@ function updateBooks() {
 function addBookToLibrary(event) {
   event.preventDefault();
   if (myBooks.some(({ book }) => book.title === titleInput.value)) {
-    alert(`The book with title ${titleInput.value} already exists.`);
     return;
   }
 
@@ -74,6 +73,7 @@ function addBookToLibrary(event) {
   form.reset();
 }
 
+/* eslint-disable no-use-before-define */
 function removeBook(event) {
   const { title } = event.target.parentElement.dataset;
   myBooks = myBooks.filter(({ book }) => book.title !== title);
@@ -88,6 +88,7 @@ function toggleReadStatus(event) {
 
   updateBooks();
 }
+/* eslint-enable no-use-before-define */
 
 formToggler.addEventListener('click', () => {
   form.toggleAttribute('hidden');
