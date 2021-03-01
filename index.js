@@ -40,6 +40,8 @@ function addBook(book) {
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
   const bookPages = document.createElement('span');
+
+  bookCard.classList.add('book-card');
   bookTitle.innerText = book.title;
   bookAuthor.innerText = book.author;
   bookPages.innerText = book.pages;
