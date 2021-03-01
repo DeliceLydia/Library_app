@@ -29,7 +29,8 @@ function addBookToLibrary(event) {
     checkboxInput.checked
   );
   myBooks.push({ book });
-  myBooks.forEach(book => addBook(book))
+
+  myBooks.forEach(({ book }) => addBook(book));
 }
 
 function addBook(book) {
@@ -37,10 +38,10 @@ function addBook(book) {
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
   const bookPages = document.createElement('span');
-  bookTitle.innerText = book.title
-  bookAuthor.innerText = book.author
-  bookPages.innerText = book.pages
-  
+  bookTitle.innerText = book.title;
+  bookAuthor.innerText = book.author;
+  bookPages.innerText = book.pages;
+
   bookCard.append(bookTitle);
   bookCard.append(bookAuthor);
   bookCard.append(bookPages);
@@ -50,4 +51,3 @@ function addBook(book) {
 form.addEventListener('submit', function (event) {
   addBookToLibrary(event);
 });
-
