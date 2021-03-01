@@ -46,8 +46,10 @@ function createBookCard(book) {
   bookCard.append(readButton);
   bookList.append(bookCard);
 
+  /* eslint-disable no-use-before-define */
   removeButton.addEventListener('click', removeBook);
   readButton.addEventListener('click', toggleReadStatus);
+  /* eslint-enable no-use-before-define */
 }
 
 function updateBooks() {
@@ -73,7 +75,6 @@ function addBookToLibrary(event) {
   form.reset();
 }
 
-/* eslint-disable no-use-before-define */
 function removeBook(event) {
   const { title } = event.target.parentElement.dataset;
   myBooks = myBooks.filter(({ book }) => book.title !== title);
@@ -88,7 +89,6 @@ function toggleReadStatus(event) {
 
   updateBooks();
 }
-/* eslint-enable no-use-before-define */
 
 formToggler.addEventListener('click', () => {
   form.toggleAttribute('hidden');
