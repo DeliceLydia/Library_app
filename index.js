@@ -36,14 +36,24 @@ function updateBooks() {
 }
 
 function removeBook(event) {
-  const title = event.target.dataset.title;
+  const title = event.target.parentElement.dataset.title;
   myBooks = myBooks.filter(({ book }) => book.title !== title);
+
+  updateBooks();
+}
+
+function toggleReadStatus(event) {
+  const title = event.target.parentElement.dataset.title;
+  const bookIndex = myBooks.findIndex(({ book }) => book.title === title);
+  myBooks[bookIndex].book.read = !myBooks[bookIndex].book.read;
 
   updateBooks();
 }
 
 function createBookCard(book) {
   const bookCard = document.createElement('div');
+  bookCard.setAttribute('data-title', book.title);
+
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
   const bookPages = document.createElement('p');
@@ -51,12 +61,11 @@ function createBookCard(book) {
 
   const removeButton = document.createElement('button');
   removeButton.setAttribute('type', 'button');
-  removeButton.setAttribute('data-title', book.title);
   removeButton.innerText = 'Remove book';
 
   const readButton = document.createElement('button');
   readButton.setAttribute('type', 'button');
-  readButton.innerText = 'Read';
+  readButton.innerText = book.read ? 'Unread' : 'Read';
 
   bookCard.classList.add('book-card');
   bookTitle.innerText = `Title: ${book.title}`;
@@ -73,6 +82,7 @@ function createBookCard(book) {
   bookList.append(bookCard);
 
   removeButton.addEventListener('click', removeBook);
+  readButton.addEventListener('click', toggleReadStatus);
 }
 
 formToggler.addEventListener('click', function () {
