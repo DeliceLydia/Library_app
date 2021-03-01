@@ -46,7 +46,8 @@ function createBookCard(book) {
   const bookCard = document.createElement('div');
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
-  const bookPages = document.createElement('span');
+  const bookPages = document.createElement('p');
+  const readStatus = document.createElement('p');
 
   const removeButton = document.createElement('button');
   removeButton.setAttribute('type', 'button');
@@ -58,13 +59,15 @@ function createBookCard(book) {
   readButton.innerText = 'Read';
 
   bookCard.classList.add('book-card');
-  bookTitle.innerText = book.title;
-  bookAuthor.innerText = book.author;
-  bookPages.innerText = book.pages;
+  bookTitle.innerText = `Title: ${book.title}`;
+  bookAuthor.innerText = `Author: ${book.author}`;
+  bookPages.innerText = `Pages: ${book.pages}`;
+  readStatus.innerText = `Read: ${book.read}`;
 
   bookCard.append(bookTitle);
   bookCard.append(bookAuthor);
   bookCard.append(bookPages);
+  bookCard.append(readStatus);
   bookCard.append(removeButton);
   bookCard.append(readButton);
   bookList.append(bookCard);
