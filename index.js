@@ -30,11 +30,6 @@ function addBookToLibrary(event) {
   form.reset();
 }
 
-function updateBooks() {
-  bookList.innerHTML = '';
-  myBooks.forEach(({ book }) => createBookCard(book));
-}
-
 function removeBook(event) {
   const title = event.target.parentElement.dataset.title;
   myBooks = myBooks.filter(({ book }) => book.title !== title);
@@ -48,6 +43,11 @@ function toggleReadStatus(event) {
   myBooks[bookIndex].book.read = !myBooks[bookIndex].book.read;
 
   updateBooks();
+}
+
+function updateBooks() {
+  bookList.innerHTML = '';
+  myBooks.forEach(({ book }) => createBookCard(book));
 }
 
 function createBookCard(book) {
