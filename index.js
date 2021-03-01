@@ -40,6 +40,13 @@ function addBook(book) {
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
   const bookPages = document.createElement('span');
+  const removeButton = document.createElement('button');
+  removeButton.setAttribute('type', 'button');
+  removeButton.innerText = 'Remove book';
+
+  const readButton = document.createElement('button');
+  readButton.setAttribute('type', 'button');
+  readButton.innerText = 'Read';
 
   bookCard.classList.add('book-card');
   bookTitle.innerText = book.title;
@@ -49,6 +56,8 @@ function addBook(book) {
   bookCard.append(bookTitle);
   bookCard.append(bookAuthor);
   bookCard.append(bookPages);
+  bookCard.append(removeButton);
+  bookCard.append(readButton);
   bookList.append(bookCard);
 }
 
