@@ -15,45 +15,6 @@ function Book(title = '', author = '', pages = '', read = false) {
   this.read = read;
 }
 
-function addBookToLibrary(event) {
-  event.preventDefault();
-  if (myBooks.some(({ book }) => book.title === titleInput.value)) {
-    alert(`The book with title ${titleInput.value} already exists.`);
-    return;
-  }
-
-  const book = new Book(
-    titleInput.value,
-    authorInput.value,
-    pagesInput.value,
-    checkboxInput.checked
-  );
-
-  myBooks.push({ book });
-  updateBooks();
-  form.reset();
-}
-
-function removeBook(event) {
-  const title = event.target.parentElement.dataset.title;
-  myBooks = myBooks.filter(({ book }) => book.title !== title);
-
-  updateBooks();
-}
-
-function toggleReadStatus(event) {
-  const title = event.target.parentElement.dataset.title;
-  const bookIndex = myBooks.findIndex(({ book }) => book.title === title);
-  myBooks[bookIndex].book.read = !myBooks[bookIndex].book.read;
-
-  updateBooks();
-}
-
-function updateBooks() {
-  bookList.innerHTML = '';
-  myBooks.forEach(({ book }) => createBookCard(book));
-}
-
 function createBookCard(book) {
   const bookCard = document.createElement('div');
   bookCard.setAttribute('data-title', book.title);
@@ -89,10 +50,49 @@ function createBookCard(book) {
   readButton.addEventListener('click', toggleReadStatus);
 }
 
-formToggler.addEventListener('click', function () {
+function updateBooks() {
+  bookList.innerHTML = '';
+  myBooks.forEach(({ book }) => createBookCard(book));
+}
+
+function addBookToLibrary(event) {
+  event.preventDefault();
+  if (myBooks.some(({ book }) => book.title === titleInput.value)) {
+    alert(`The book with title ${titleInput.value} already exists.`);
+    return;
+  }
+
+  const book = new Book(
+    titleInput.value,
+    authorInput.value,
+    pagesInput.value,
+    checkboxInput.checked
+  );
+
+  myBooks.push({ book });
+  updateBooks();
+  form.reset();
+}
+
+function removeBook(event) {
+  const { title } = event.target.parentElement.dataset;
+  myBooks = myBooks.filter(({ book }) => book.title !== title);
+
+  updateBooks();
+}
+
+function toggleReadStatus(event) {
+  const { title } = event.target.parentElement.dataset;
+  const bookIndex = myBooks.findIndex(({ book }) => book.title === title);
+  myBooks[bookIndex].book.read = !myBooks[bookIndex].book.read;
+
+  updateBooks();
+}
+
+formToggler.addEventListener('click', () => {
   form.toggleAttribute('hidden');
 });
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', (event) => {
   addBookToLibrary(event);
 });
