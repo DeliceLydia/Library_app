@@ -1,0 +1,9 @@
+h3 {
+  margin: 6px 0;
+}
+
+.book-card {
+  border: 1px solid gray;
+  padding: 12px;
+  border-radius: 6px;
+}
