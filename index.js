@@ -17,15 +17,19 @@ function Book(title = '', author = '', pages = '', read = false) {
 
 function addBookToLibrary(event) {
   event.preventDefault();
-
+  if (myBooks.some(({ book }) => book.title === titleInput.value)) {
+    alert('Same book');
+    return
+  }
+  
   const book = new Book(
     titleInput.value,
     authorInput.value,
     pagesInput.value,
     checkboxInput.checked
   );
+  
   myBooks.push({ book });
-
   updateBooks();
   form.reset();
 }
