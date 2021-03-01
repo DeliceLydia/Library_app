@@ -32,16 +32,25 @@ function addBookToLibrary(event) {
 
 function updateBooks() {
   bookList.innerHTML = '';
-  myBooks.forEach(({ book }) => addBook(book));
+  myBooks.forEach(({ book }) => createBookCard(book));
 }
 
-function addBook(book) {
+function removeBook(event) {
+  const title = event.target.dataset.title;
+  myBooks = myBooks.filter(({ book }) => book.title !== title);
+
+  updateBooks();
+}
+
+function createBookCard(book) {
   const bookCard = document.createElement('div');
   const bookTitle = document.createElement('h3');
   const bookAuthor = document.createElement('h3');
   const bookPages = document.createElement('span');
+
   const removeButton = document.createElement('button');
   removeButton.setAttribute('type', 'button');
+  removeButton.setAttribute('data-title', book.title);
   removeButton.innerText = 'Remove book';
 
   const readButton = document.createElement('button');
@@ -59,6 +68,8 @@ function addBook(book) {
   bookCard.append(removeButton);
   bookCard.append(readButton);
   bookList.append(bookCard);
+
+  removeButton.addEventListener('click', removeBook);
 }
 
 formToggler.addEventListener('click', function () {
