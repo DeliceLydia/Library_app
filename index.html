@@ -11,11 +11,21 @@
       <h1>Book Library</h1>
       <button id="formToggler" class="button">Add a Book</button>
       <form id="form" hidden>
-        <input type="text" placeholder="Title" class="input" />
-        <input type="text" id="author" placeholder="Author" class="input" />
-        <input type="number" id="pages" placeholder="Pages" class="input" />
+        <input type="text" id="titleInput" placeholder="Title" class="input" />
+        <input
+          type="text"
+          id="authorInput"
+          placeholder="Author"
+          class="input"
+        />
+        <input
+          type="number"
+          id="pagesInput"
+          placeholder="Pages"
+          class="input"
+        />
         <label>
-          <input type="checkbox" id="" />
+          <input type="checkbox" id="readCheckbox" />
           Read?
         </label>
         <button class="button">Submit</button>
