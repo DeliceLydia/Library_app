@@ -66,7 +66,7 @@ function addBookToLibrary(event) {
     titleInput.value,
     authorInput.value,
     pagesInput.value,
-    checkboxInput.checked
+    checkboxInput.checked,
   );
 
   myBooks.push({ book });
